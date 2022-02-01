@@ -5,4 +5,26 @@
     ViewData["Title"] = "Form";
 }
 
+@model Mission6.Models.AppointmentResponse
+
+
 <h1>This is Form Page.</h1>
+
+<div>Add New Movies</div>
+
+<form method="post" class="form-group">
+    <label asp-for="GroupName">Name of Group: </label>
+    <input asp-for="GroupName" class="form-control" />
+    <br />
+    <label asp-for="GroupSize">Size of Group: </label>
+    <input type="number" asp-for="GroupSize" class="form-control" />
+    <br />
+    <label asp-for="Email">Email Address (xxx@xxxx.com): </label>
+    <input asp-for="Email" class="form-control" />
+    <br />
+    <label asp-for="Phone">Phone (xxx-xxx-xxxx): </label>
+    <input asp-for="Phone" class="form-control" />
+    <br />
+    <button id="btn btn-primary" type="submit">Submit</button>
+    <div asp-validation-summary="All;"></div>
+</form>

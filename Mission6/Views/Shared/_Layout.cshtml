@@ -11,12 +11,12 @@
     <nav>
         <ul>
             <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-            <li><a asp-controller="Home" asp-action="Signup">Signup</a></li>
+            @*<li><a asp-controller="Home" asp-action="Signup">Signup</a></li>*@
             <li><a asp-controller="Home" asp-action="Form">Form</a></li>
             <li><a asp-controller="Home" asp-action="ViewApp">ViewApp</a></li>
         </ul>
     </nav>
-    <div>
+    <div class="container">
         @RenderBody()
     </div>
 </body>
