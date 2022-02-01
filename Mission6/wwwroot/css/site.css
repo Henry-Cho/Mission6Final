@@ -72,5 +72,8 @@ body {
 
 form {
     width: 50vw;
-    color: black;
+}
+
+.container {
+    padding: 0 200px 0px 40px;
 }
