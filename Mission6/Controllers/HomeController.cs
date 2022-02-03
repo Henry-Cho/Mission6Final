@@ -31,6 +31,18 @@ namespace Mission6.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Form(TaskResponse ar)
+        {
+            if (ModelState.IsValid)
+            {
+                task.Add(ar);
+                task.SaveChanges();
+                return RedirectToAction("ViewTask");
+            }
+            return View();
+        }
+
         [HttpGet]
         public IActionResult ViewTask()
         {

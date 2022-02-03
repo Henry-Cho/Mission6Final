@@ -18,7 +18,9 @@
     <input asp-for="DueDate" class="form-control" />
     <br />
     <label asp-for="Quadrant">Quadrant Number: </label>
-    <select asp-for="Quadrant" class="form-control">
+    <input type="number" asp-for="Quadrant" class="form-control" />
+    <br />
+    <select asp-for="Categoryid" class="form-control">
         <option value="">Select a category</option>
         @foreach (Category m in ViewBag.Categories)
         {
@@ -32,7 +34,6 @@
         <option value="false">No</option>
     </select>
     <br />
-    @*<input asp-for="Completed" type="hidden" value=false/>*@
     <button class="btn btn-primary" type="submit">Submit</button>
     <div asp-validation-summary="All;"></div>
 </form>
