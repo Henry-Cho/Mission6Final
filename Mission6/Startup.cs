@@ -26,10 +26,10 @@ namespace Mission6
         {
             services.AddControllersWithViews();
 
-            //services.AddDbContext<Models.AppointmentContext>(options =>
-            //{
-            //    options.UseSqlite(Configuration.GetConnectionString("AppointmentConnection"));
-            //});
+            services.AddDbContext<Models.TaskContext>(options =>
+            {
+                options.UseSqlite(Configuration.GetConnectionString("TaskConnection"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

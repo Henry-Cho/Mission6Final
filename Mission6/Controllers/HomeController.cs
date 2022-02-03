@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission6.Models;
 
@@ -11,11 +12,11 @@ namespace Mission6.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private TaskContext task { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(TaskContext someName)
         {
-            _logger = logger;
+            task = someName;
         }
 
         public IActionResult Index()
@@ -23,19 +24,20 @@ namespace Mission6.Controllers
             return View();
         }
 
-        public IActionResult Signup()
-        {
-            return View();
-        }
-
+        [HttpGet]
         public IActionResult Form()
         {
+            ViewBag.Categories = task.Categories.ToList();
             return View();
         }
 
-        public IActionResult ViewApp()
+        [HttpGet]
+        public IActionResult ViewTask()
         {
-            return View();
+            var taskList = task.Responses
+                .Include(x => x.Category)
+                .ToList();
+            return View(taskList);
         }
     }
 }

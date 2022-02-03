@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "View Tasks";
+}
+
+@model List<TaskResponse>
+
+<h1>This is View Task page.</h1>
+
+<table class="table table-bordered table-striped">
+    <thead class="font-weight-bold">
+        <tr>
+            <td>Task</td>
+            <td>Due Date</td>
+            <td>Quadrant</td>
+            <td>Category</td>
+            <td>Completed</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+        <tr>
+            <td>@x.TaskName</td>
+            <td>@x.DueDate</td>
+            <td>@x.Quadrant</td>
+            <td>@x.Category.CategoryName</td>
+            <td>@x.Completed</td>
+            @* To edit and delete a record, used a recordID (MovieID) *@
+            @*<td><a asp-controller="Home" asp-action="Edit" asp-route-recordId="@x.MovieId">Edit</a></td>
+            <td><a asp-controller="Home" asp-action="Delete" asp-route-recordId="@x.MovieId">Delete</a></td>*@
+        </tr>
+
+        }
+    </tbody>
+</table>

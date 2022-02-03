@@ -74,5 +74,4 @@
 /Users/hyungseokcho/Projects/Mission6/Mission6/bin/Debug/netcoreapp3.1/runtimes/win-x64/native/e_sqlite3.dll
 /Users/hyungseokcho/Projects/Mission6/Mission6/bin/Debug/netcoreapp3.1/runtimes/win-x86/native/e_sqlite3.dll
 /Users/hyungseokcho/Projects/Mission6/Mission6/obj/Debug/netcoreapp3.1/Razor/Views/Home/Form.cshtml.g.cs
-/Users/hyungseokcho/Projects/Mission6/Mission6/obj/Debug/netcoreapp3.1/Razor/Views/Home/Signup.cshtml.g.cs
-/Users/hyungseokcho/Projects/Mission6/Mission6/obj/Debug/netcoreapp3.1/Razor/Views/Home/ViewApp.cshtml.g.cs
+/Users/hyungseokcho/Projects/Mission6/Mission6/obj/Debug/netcoreapp3.1/Razor/Views/Home/ViewTask.cshtml.g.cs
