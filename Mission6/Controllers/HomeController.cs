@@ -40,6 +40,7 @@ namespace Mission6.Controllers
                 task.SaveChanges();
                 return RedirectToAction("ViewTask");
             }
+            ViewBag.Categories = task.Categories.ToList();
             return View();
         }
 
@@ -51,5 +52,55 @@ namespace Mission6.Controllers
                 .ToList();
             return View(taskList);
         }
+
+        // Edit a moive (GET)
+        [HttpGet]
+        public IActionResult Edit(int recordId)
+        {
+            // set this variable as false to indicate I am on Editing
+            ViewBag.New = false;
+            // get data from category model to display them on a cshtml
+            ViewBag.Categories = task.Categories.ToList();
+
+            // find a specific movie by its id
+            var application = task.Responses.Single(x => x.TaskId == recordId);
+            return View("Form", application);
+        }
+
+        // Edit a moive (POST)
+        [HttpPost]
+        public IActionResult Edit(TaskResponse ar)
+        {
+            // model validation
+            if (ModelState.IsValid)
+            {
+                // edit a specific model
+                task.Update(ar);
+                task.SaveChanges();
+
+                // show them in the index page
+                return RedirectToAction("ViewTask");
+            }
+            ViewBag.New = false;
+            // if the model is not validated, get data from category model and show NewMoive cshtml
+            ViewBag.Categories = task.Categories.ToList();
+            return View("Form", ar);
+        }
+
+        // Delete
+        public IActionResult Delete(int recordId)
+        {
+            // find a movie from DB by its id
+            var record = task.Responses.Single(x => x.TaskId == recordId);
+            task.Responses.Remove(record);
+            task.SaveChanges();
+
+            var taskList = task.Responses
+                .Include(x => x.Category)
+                .ToList();
+
+            return RedirectToAction("ViewTask", taskList);
+        }
+
     }
 }
