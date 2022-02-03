@@ -48,6 +48,7 @@ namespace Mission6.Controllers
         public IActionResult ViewTask()
         {
             var taskList = task.Responses
+                .Where(x => x.Completed == false)
                 .Include(x => x.Category)
                 .ToList();
             return View(taskList);
@@ -100,6 +101,15 @@ namespace Mission6.Controllers
                 .ToList();
 
             return RedirectToAction("ViewTask", taskList);
+        }
+
+        public IActionResult MarkComplete(int recordId)
+        {
+            var record = task.Responses.Single(x => x.TaskId == recordId);
+
+            record.Completed = true;
+            task.SaveChanges();
+            return RedirectToAction("ViewTask");
         }
 
     }
