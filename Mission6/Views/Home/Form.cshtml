@@ -5,26 +5,34 @@
     ViewData["Title"] = "Form";
 }
 
-@model Mission6.Models.AppointmentResponse
+@model Mission6.Models.TaskResponse
 
 
-<h1>This is Form Page.</h1>
-
-<div>Add New Movies</div>
+<h1>Add a New Task</h1>
 
 <form method="post" class="form-group">
-    <label asp-for="GroupName">Name of Group: </label>
-    <input asp-for="GroupName" class="form-control" />
+    <label asp-for="TaskName">Name of Task: </label>
+    <input asp-for="TaskName" class="form-control" />
     <br />
-    <label asp-for="GroupSize">Size of Group: </label>
-    <input type="number" asp-for="GroupSize" class="form-control" />
+    <label asp-for="DueDate">Due Date(mm/dd/yyyy): </label>
+    <input asp-for="DueDate" class="form-control" />
     <br />
-    <label asp-for="Email">Email Address (xxx@xxxx.com): </label>
-    <input asp-for="Email" class="form-control" />
+    <label asp-for="Quadrant">Quadrant Number: </label>
+    <select asp-for="Quadrant" class="form-control">
+        <option value="">Select a category</option>
+        @foreach (Category m in ViewBag.Categories)
+        {
+            <option value="@m.CategoryId">@m.CategoryName</option>
+        }
+    </select>
     <br />
-    <label asp-for="Phone">Phone (xxx-xxx-xxxx): </label>
-    <input asp-for="Phone" class="form-control" />
+    <label asp-for="Completed">Completed: </label>
+    <select asp-for="Completed" class="form-control">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
     <br />
-    <button id="btn btn-primary" type="submit">Submit</button>
+    @*<input asp-for="Completed" type="hidden" value=false/>*@
+    <button class="btn btn-primary" type="submit">Submit</button>
     <div asp-validation-summary="All;"></div>
 </form>
