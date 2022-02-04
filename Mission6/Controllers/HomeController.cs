@@ -21,7 +21,11 @@ namespace Mission6.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var taskList = task.Responses
+                .Where(x => x.Completed == false)
+                .Include(x => x.Category)
+                .ToList();
+            return View(taskList);
         }
 
         [HttpGet]
@@ -38,20 +42,10 @@ namespace Mission6.Controllers
             {
                 task.Add(ar);
                 task.SaveChanges();
-                return RedirectToAction("ViewTask");
+                return RedirectToAction("Index");
             }
             ViewBag.Categories = task.Categories.ToList();
             return View();
-        }
-
-        [HttpGet]
-        public IActionResult ViewTask()
-        {
-            var taskList = task.Responses
-                .Where(x => x.Completed == false)
-                .Include(x => x.Category)
-                .ToList();
-            return View(taskList);
         }
 
         // Edit a moive (GET)
@@ -80,7 +74,7 @@ namespace Mission6.Controllers
                 task.SaveChanges();
 
                 // show them in the index page
-                return RedirectToAction("ViewTask");
+                return RedirectToAction("Index");
             }
             ViewBag.New = false;
             // if the model is not validated, get data from category model and show NewMoive cshtml
@@ -100,7 +94,7 @@ namespace Mission6.Controllers
                 .Include(x => x.Category)
                 .ToList();
 
-            return RedirectToAction("ViewTask", taskList);
+            return RedirectToAction("Index", taskList);
         }
 
         public IActionResult MarkComplete(int recordId)
@@ -109,7 +103,7 @@ namespace Mission6.Controllers
 
             record.Completed = true;
             task.SaveChanges();
-            return RedirectToAction("ViewTask");
+            return RedirectToAction("Index");
         }
 
     }
