@@ -68,6 +68,14 @@ form {
     padding: 8px 0;
 }
 
+.second {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+}
+
 .q {
     border-right: 1px solid black;
 }
