@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Mission6.Models;
 
 namespace Mission6.Controllers
@@ -14,13 +9,17 @@ namespace Mission6.Controllers
     {
         private TaskContext task { get; set; }
 
-        public HomeController(TaskContext someName)
+        public HomeController(TaskContext _task)
         {
-            task = someName;
+            task = _task;
         }
 
         public IActionResult Index()
         {
+            // get data from taskresponse model
+            // get data which has completed as false
+            // include category data
+            // have a list format
             var taskList = task.Responses
                 .Where(x => x.Completed == false)
                 .Include(x => x.Category)
@@ -31,6 +30,7 @@ namespace Mission6.Controllers
         [HttpGet]
         public IActionResult Form()
         {
+            // get data from category model and put it in ViewBag
             ViewBag.Categories = task.Categories.ToList();
             return View();
         }
@@ -38,17 +38,20 @@ namespace Mission6.Controllers
         [HttpPost]
         public IActionResult Form(TaskResponse ar)
         {
+            // validation
             if (ModelState.IsValid)
             {
                 task.Add(ar);
                 task.SaveChanges();
+                // after save a new record, call Index function
                 return RedirectToAction("Index");
             }
+            // validation fail -> return the form view again
             ViewBag.Categories = task.Categories.ToList();
             return View();
         }
 
-        // Edit a moive (GET)
+        // Edit a record (GET)
         [HttpGet]
         public IActionResult Edit(int recordId)
         {
@@ -62,7 +65,7 @@ namespace Mission6.Controllers
             return View("Form", application);
         }
 
-        // Edit a moive (POST)
+        // Edit a record (POST)
         [HttpPost]
         public IActionResult Edit(TaskResponse ar)
         {
@@ -77,7 +80,7 @@ namespace Mission6.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.New = false;
-            // if the model is not validated, get data from category model and show NewMoive cshtml
+            // if the model is not validated, get data from category model and show form cshtml
             ViewBag.Categories = task.Categories.ToList();
             return View("Form", ar);
         }
@@ -85,7 +88,7 @@ namespace Mission6.Controllers
         // Delete
         public IActionResult Delete(int recordId)
         {
-            // find a movie from DB by its id
+            // find a record from DB by its id
             var record = task.Responses.Single(x => x.TaskId == recordId);
             task.Responses.Remove(record);
             task.SaveChanges();
@@ -97,12 +100,16 @@ namespace Mission6.Controllers
             return RedirectToAction("Index", taskList);
         }
 
+        // mark as complete
         public IActionResult MarkComplete(int recordId)
         {
+            // get a single data by its recordId
             var record = task.Responses.Single(x => x.TaskId == recordId);
 
+            // change its completed as true
             record.Completed = true;
             task.SaveChanges();
+            // call index function
             return RedirectToAction("Index");
         }
 

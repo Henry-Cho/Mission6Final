@@ -19,7 +19,7 @@
         <div class="col-2 first"><span id="mySpan">IMPORTANT</span></div>
         <div class="col-5 q">
             <p style="font-weight:bold">Quadrant 1</p>
-            <div>
+            <div class="quad">
                 @foreach (var x in Model)
                 {
                     if (x.Quadrant == 1)
@@ -39,7 +39,7 @@
         </div>
         <div class="col-5">
             <p style="font-weight:bold">Quadrant 2</p>
-            <div>
+            <div class="quad">
                 @foreach (var x in Model)
                 {
                     if (x.Quadrant == 2)
@@ -63,7 +63,7 @@
         <div class="col-2 first"><span id="mySpan">NOT IMPORTANT</span></div>
         <div class="col-5 q">
             <p style="font-weight: bold">Quadrant 3</p>
-            <div>
+            <div class="quad">
                 @foreach (var x in Model)
                 {
                     if (x.Quadrant == 3)
@@ -83,7 +83,7 @@
         </div>
         <div class="col-5">
             <p style="font-weight: bold">Quadrant 4</p>
-            <div>
+            <div class="quad">
                 @foreach (var x in Model)
                 {
                     if (x.Quadrant == 4)
