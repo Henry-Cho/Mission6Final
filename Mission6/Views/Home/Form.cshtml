@@ -15,7 +15,7 @@
     <input asp-for="TaskName" class="form-control" />
     <br />
     <label asp-for="DueDate">Due Date(mm/dd/yyyy): </label>
-    <input asp-for="DueDate" class="form-control" />
+    <input type="date" asp-for="DueDate" class="form-control" />
     <br />
     <label asp-for="Quadrant">Quadrant Number: </label>
     <input type="number" asp-for="Quadrant" class="form-control" />
@@ -30,8 +30,8 @@
     <br />
     <label asp-for="Completed">Completed: </label>
     <select asp-for="Completed" class="form-control">
-        <option value="true">Yes</option>
         <option value="false">No</option>
+        <option value="true">Yes</option>
     </select>
     <br />
     <button class="btn btn-primary" type="submit">Submit</button>

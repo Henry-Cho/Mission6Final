@@ -94,3 +94,22 @@ form {
     display: flex;
     align-items: center;
 }
+
+.quad {
+    min-height: 180px;
+    max-height: 180px;
+    overflow-y: scroll;
+}
+
+li {
+    list-style: none;
+}
+
+.quad div {
+    padding: 8px 12px;
+}
+
+.quad div:hover {
+    background: orange;
+    transition: all 200ms ease-in-out;
+}

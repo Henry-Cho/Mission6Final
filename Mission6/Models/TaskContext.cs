@@ -40,27 +40,6 @@ namespace Mission6.Models
                     CategoryName = "Church"
                 }
             );
-
-            mb.Entity<TaskResponse>().HasData(
-                new TaskResponse
-                {
-                    TaskId = 1,
-                    Categoryid = 1,
-                    TaskName = "Playing with my wife",
-                    DueDate = "02/14/2022",
-                    Quadrant = 1,
-                    Completed = false,
-                },
-                new TaskResponse
-                {
-                    TaskId = 2,
-                    Categoryid = 2,
-                    TaskName = "Playing with my kid",
-                    DueDate = "02/14/2022",
-                    Quadrant = 2,
-                    Completed = false,
-                }
-            );
         }
     }
 }

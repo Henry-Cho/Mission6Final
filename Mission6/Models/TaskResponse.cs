@@ -13,7 +13,7 @@ namespace Mission6.Models
         [Required(ErrorMessage = "TaskName is required")]
         public string TaskName { get; set; }
     
-        public string DueDate { get; set; }
+        public DateTime DueDate { get; set; }
 
         [Range(1,4)]
         public int Quadrant { get; set; }
